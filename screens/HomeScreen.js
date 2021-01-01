@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
     },
 });
 
-export default function HomeScreen() {
+export default function HomeScreen (props) {
+    const {navigation} = props;
     const [articles, setArticles] = useState([]);
     useEffect(() => {
         fetchArticles();
@@ -25,9 +26,7 @@ export default function HomeScreen() {
         try {
             const response = await axios.get(URL);
             setArticles(response.data.articles);
-            console.log(response);
         } catch (error) {
-            console.error(error);
         }
     };
     return (
@@ -39,7 +38,7 @@ export default function HomeScreen() {
                         imageUrl={item.urlToImage}
                         title={item.title}
                         author={item.author}
-                        onPress={() => alert()}
+                        onPress={() => navigation.navigate('Article', {article: item})}
                     />
                 )}
                 keyExtractor={(item, index) => index.toString()}

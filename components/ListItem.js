@@ -35,7 +35,7 @@ const ListItem = ({ imageUrl, title, author, onPress }) => {
                     <Image
                         style={{ width: 100, height: 100 }}
                         source={{
-                            url: imageUrl,
+                            uri: imageUrl,
                         }}
                     />
                 )}
